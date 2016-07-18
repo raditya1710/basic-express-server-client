@@ -1,0 +1,25 @@
+{
+  "name": "basic-react-express-server-client",
+  "version": "1.0.0",
+  "description": "Most Basic Server-Client Integrated Project with React and Express Js ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raditya1710/basic-express-server-client.git"
+  },
+  "keywords": [
+    "react",
+    "express",
+    "server-client",
+    "integration"
+  ],
+  "author": "Alfonsus Raditya Arsadjaja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raditya1710/basic-express-server-client/issues"
+  },
+  "homepage": "https://github.com/raditya1710/basic-express-server-client#readme"
+}
