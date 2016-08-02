@@ -23,11 +23,12 @@ class UsersIndex extends Component{
   render(){
     return (
         <div>
-          <div className="text-xs-right">
+          <div className = "text-xs-right">
+            <Link className="btn btn-primary" to="/">Back to Home</Link>
             <Link className="btn btn-primary" to="/users/new">Create New User</Link>
           </div>
           <div>
-              Users : {this.props.users.length} <br />
+              Total Users : {this.props.users.length} <br />
               <ul className="list-group">
                   {this.showUsers()}
               </ul>

@@ -1,13 +1,16 @@
 import React from 'react';
-import {Route, IndexRoute} from 'react-router';
-import App from './components/app';
-import UsersIndex from './components/users_index';
-import UsersNew from './components/users_new';
-import UsersDetail from './components/users_detail';
+import {Route, IndexRedirect} from 'react-router';
+import App from './containers/app';
+import UsersIndex from './containers/users_index';
+import UsersNew from './containers/users_new';
+import UsersDetail from './containers/users_detail';
+import Home from './components/home';
 
 export default(
 <Route path="/" component = {App} >
-    <IndexRoute component={UsersIndex} />
+    <IndexRedirect to="home"/>
+    <Route path="home" component = {Home} />
+    <Route path="users" component = {UsersIndex} />
     <Route path="users/new" component = {UsersNew} />
     <Route path="users/:id" component = {UsersDetail} />
 </Route>

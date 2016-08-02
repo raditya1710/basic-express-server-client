@@ -14,7 +14,7 @@ class UsersDetail extends Component{
   onDeleteClick(){
     this.props.deleteUser(this.props.params.id)
       .then(() => {
-        this.context.router.push("/");
+        this.context.router.push("/users");
       });
   }
 
@@ -25,11 +25,11 @@ class UsersDetail extends Component{
     }
     return(
       <div> <h1>User Detail {this.props.params.id}</h1>
-        <Link to="/" className="btn btn-primary">
+        <Link to="/users" className="btn btn-primary">
           Back to Index
         </Link>
         <h3>  Profile of {user.userName} </h3>
-        <h4>  {user.firstName} {user.lastName} </h4>
+        <h4>  {user.firstName} {user.lastName} </h4> <br/>
         <h5>  E-mail      : {user.email} </h5>
         <h5>  Address     : {user.address} </h5>
         <h5>  Description : {user.description} </h5>

@@ -113,7 +113,7 @@ function renderFullPage(html) {
         <script src="https://maps.googleapis.com/maps/api/js"></script>
       </head>
       <body>
-        <div id="container">${html}</div>
+        <div class="container">${html}</div>
         <script src="/assets/bundle.js"></script>
       </body>
     </html>

@@ -12,7 +12,7 @@ class UsersNew extends Component{
 
     this.props.createUser(props)
       .then(() => {
-          this.context.router.push('/');
+          this.context.router.push('/users');
       });
   }
 
