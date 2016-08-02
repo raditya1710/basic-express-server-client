@@ -24,8 +24,8 @@ class UsersIndex extends Component{
     return (
         <div>
           <div className = "text-xs-right">
-            <Link className="btn btn-primary" to="/">Back to Home</Link>
-            <Link className="btn btn-primary" to="/users/new">Create New User</Link>
+            <Link className="btn btn-primary btn-sm" to="/">Back to Home</Link><br />
+            <Link className="btn btn-primary btn-lg" to="/users/new">Create New User</Link>
           </div>
           <div>
               Total Users : {this.props.users.length} <br />

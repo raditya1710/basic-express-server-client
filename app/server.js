@@ -109,7 +109,7 @@ function renderFullPage(html) {
     <html>
       <head>
         <link rel="stylesheet" href="/../style/style.css">
-        <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="/../style/bootstrap.css" />
         <script src="https://maps.googleapis.com/maps/api/js"></script>
       </head>
       <body>

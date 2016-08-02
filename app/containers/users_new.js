@@ -22,7 +22,7 @@ class UsersNew extends Component{
       <div>
 
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <h2> Create A New User </h2>
+          <h2 className="text-info"> Create A New User </h2>
           <div className="form-group">
             <label>Username</label>
             <input type="text" className="form-control" placeholder = "Enter your username" {...userName} />
@@ -55,6 +55,7 @@ class UsersNew extends Component{
 
           <button type="submit" className = "btn btn-primary">Submit</button>
         </form>
+        <Link className = "btn btn-danger" to="/users">Cancel</Link>
       </div>
     );
   }

@@ -24,16 +24,14 @@ class UsersDetail extends Component{
       return <h3>"Loading..."</h3>
     }
     return(
-      <div> <h1>User Detail {this.props.params.id}</h1>
+      <div> <h2> <span className="text-info"> User Detail: </span> <span className="text-primary"> <strong> {user.firstName} {user.lastName} </strong></span> </h2>
+        <h5> <span className="text-info"> Username    : </span><br/>{user.userName} </h5>
+        <h5> <span className="text-info"> E-mail      : </span><br/>{user.email} </h5>
+        <h5> <span className="text-info"> Address     : </span><br/>{user.address} </h5>
+        <h5> <span className="text-info"> Description : </span><br/>{user.description} </h5>
         <Link to="/users" className="btn btn-primary">
           Back to Index
         </Link>
-        <h3>  Profile of {user.userName} </h3>
-        <h4>  {user.firstName} {user.lastName} </h4> <br/>
-        <h5>  E-mail      : {user.email} </h5>
-        <h5>  Address     : {user.address} </h5>
-        <h5>  Description : {user.description} </h5>
-
         <button className = "btn btn-danger" onClick={this.onDeleteClick.bind(this)}>
           Delete User
         </button>
