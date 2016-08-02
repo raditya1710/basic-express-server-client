@@ -2,7 +2,7 @@ import Express from 'express';
 import path from 'path';
 import mysql from 'mysql';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup} from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { RouterContext, match, createHistory } from 'react-router';
@@ -93,31 +93,27 @@ function handleRender(req, res) {
       // You can also check renderProps.components or renderProps.routes for
       // your "not found" component or route respectively, and send a 404 as
       // below, if you're using a catch-all route.
-      res.status(200).send(renderFullPage(
+      res.status(200).send('<!doctype html>\n' + renderFullPage(
         renderToString(
           <Provider store={store}>
             <RouterContext {...renderProps} />
-          </Provider>),
-        initialState
+          </Provider>)
       ));
     } else {
       res.status(404).send('Not found');
     }
   })
 }
-function renderFullPage(html, initialState) {
+function renderFullPage(html) {
   return `
-    <!doctype html>
     <html>
       <head>
+        <link rel="stylesheet" href="/../style/style.css">
         <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" />
         <script src="https://maps.googleapis.com/maps/api/js"></script>
       </head>
       <body>
-        <div id="root">${html}</div>
-        <script>
-          window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
-        </script>
+        <div id="container">${html}</div>
         <script src="/assets/bundle.js"></script>
       </body>
     </html>

@@ -16,5 +16,5 @@ match({ history, routes }, (error, redirectLocation, renderProps) => {
   ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
       <Router {...renderProps} />
-    </Provider>, document.getElementById('root'))
+    </Provider>, document.getElementById('container'))
 });

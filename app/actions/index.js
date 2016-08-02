@@ -26,7 +26,6 @@ export function createUser(props){
 
 export function fetchUserWithId(id){
   const request =  axios.get(`${ROOT_URL}/api/users/${id}${API_KEY}`);
-  console.log(request);
   return{
     type : FETCH_USER_WITH_ID,
     payload: request
