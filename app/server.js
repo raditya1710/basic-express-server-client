@@ -1,3 +1,4 @@
+import qs from 'qs' // Add this at the top of the file
 import Express from 'express';
 import path from 'path';
 import mysql from 'mysql';
@@ -11,6 +12,7 @@ import reducers from './reducers';
 import promise from 'redux-promise';
 import bodyParser from 'body-parser';
 import { CONFIG_MYSQL } from '../config_server';
+
 
 const app = new Express();
 const router = Express.Router();
@@ -72,6 +74,7 @@ router.route('/users/:id')
 
 
 app.use('/', handleRender);
+
 const createStoreWithMiddleware = applyMiddleware(
   promise
 )(createStore);
@@ -80,9 +83,10 @@ const createStoreWithMiddleware = applyMiddleware(
 var connection = mysql.createConnection(CONFIG_MYSQL);
 
 function handleRender(req, res) {
-  const store = createStoreWithMiddleware(reducers);
 
+  const store = createStoreWithMiddleware(reducers);
   const initialState = store.getState();
+  const params = qs.parse(req.query);
 
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
@@ -93,18 +97,19 @@ function handleRender(req, res) {
       // You can also check renderProps.components or renderProps.routes for
       // your "not found" component or route respectively, and send a 404 as
       // below, if you're using a catch-all route.
-      res.status(200).send('<!doctype html>\n' + renderFullPage(
-        renderToString(
-          <Provider store={store}>
-            <RouterContext {...renderProps} />
-          </Provider>)
-      ));
+      const html = renderToString(
+        <Provider store={store}>
+          <RouterContext {...renderProps} />
+        </Provider>);
+
+      const finalState = store.getState();
+      res.status(200).send('<!doctype html>\n' + renderFullPage(html, finalState));
     } else {
       res.status(404).send('Not found');
     }
   })
 }
-function renderFullPage(html) {
+function renderFullPage(html, preloadedState) {
   return `
     <html>
       <head>
@@ -114,6 +119,9 @@ function renderFullPage(html) {
       </head>
       <body>
         <div class="container">${html}</div>
+        <script>
+          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
+        </script>
         <script src="/assets/bundle.js"></script>
       </body>
     </html>
