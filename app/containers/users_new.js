@@ -54,8 +54,9 @@ class UsersNew extends Component{
           </div>
 
           <button type="submit" className = "btn btn-primary">Submit</button>
+          <Link className = "btn btn-danger" to="/users">Cancel</Link>
         </form>
-        <Link className = "btn btn-danger" to="/users">Cancel</Link>
+
       </div>
     );
   }
