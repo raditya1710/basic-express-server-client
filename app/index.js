@@ -8,15 +8,13 @@ import routes from './routes';
 import reducers from './reducers';
 import promise from 'redux-promise';
 
-const preloadedState = window.__PRELOADED_STATE__;
-
 const createStoreWithMiddleware = applyMiddleware(
   promise
 )(createStore);
 
 match({ history, routes }, (error, redirectLocation, renderProps) => {
   ReactDOM.render(
-    <Provider store={createStoreWithMiddleware(reducers, preloadedState)}>
+    <Provider store={createStoreWithMiddleware(reducers)}>
       <Router {...renderProps} />
     </Provider>, document.querySelector('.container'))
 });

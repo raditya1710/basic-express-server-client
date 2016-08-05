@@ -6,7 +6,7 @@ export default class Photo extends Component{
   render(){
     return(
       <div>
-        <h1 className="text-info" style={{margin:'5px'}}>Photos</h1>
+        <h1 className="text-info" style={{margin:'5px'}}>Gallery</h1>
         <PhotoItem name='Optimized-DSCN7727.JPG' />
         <PhotoItem name='Optimized-DSCN7542.JPG' />
         <PhotoItem name='orig_73582.jpg' />

@@ -3,7 +3,7 @@ import Express from 'express';
 import path from 'path';
 import mysql from 'mysql';
 import React from 'react';
-import { renderToString, renderToStaticMarkup} from 'react-dom/server';
+import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { RouterContext, match, createHistory } from 'react-router';
@@ -71,22 +71,18 @@ router.route('/users/:id')
     });
   });
 
-
-
-app.use('/', handleRender);
-
-const createStoreWithMiddleware = applyMiddleware(
-  promise
-)(createStore);
-
 /* Setting Databases */
 var connection = mysql.createConnection(CONFIG_MYSQL);
 
+app.use('/', handleRender);
+
+
 function handleRender(req, res) {
 
+  const createStoreWithMiddleware = applyMiddleware(
+    promise
+  )(createStore);
   const store = createStoreWithMiddleware(reducers);
-  const initialState = store.getState();
-  const params = qs.parse(req.query);
 
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
@@ -97,31 +93,27 @@ function handleRender(req, res) {
       // You can also check renderProps.components or renderProps.routes for
       // your "not found" component or route respectively, and send a 404 as
       // below, if you're using a catch-all route.
-      const html = renderToString(
+      const html = ReactDOMServer.renderToString(
         <Provider store={store}>
           <RouterContext {...renderProps} />
         </Provider>);
 
-      const finalState = store.getState();
-      res.status(200).send('<!doctype html>\n' + renderFullPage(html, finalState));
+      res.status(200).send('<!doctype html>\n' + renderFullPage(html));
     } else {
       res.status(404).send('Not found');
     }
   })
 }
-function renderFullPage(html, preloadedState) {
+function renderFullPage(html) {
   return `
     <html>
       <head>
         <link rel="stylesheet" href="/../style/style.css">
-        <link rel="stylesheet" href="/../style/bootstrap.css" />
+        <link rel="stylesheet" href="/../style/bootstrap.css">
         <script src="https://maps.googleapis.com/maps/api/js"></script>
       </head>
       <body>
         <div class="container">${html}</div>
-        <script>
-          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
-        </script>
         <script src="/assets/bundle.js"></script>
       </body>
     </html>

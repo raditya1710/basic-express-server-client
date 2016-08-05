@@ -6,7 +6,7 @@ export const FETCH_USER_WITH_ID = 'FETCH_USER_WITH_ID';
 export const DELETE_USER = 'DELETE_USER';
 
 const ROOT_URL = 'http://localhost:3000';
-const API_KEY = '';//'?key=raditsimplereactcs';
+const API_KEY = '';
 
 export function fetchUsers(){
   const request = axios.get(`${ROOT_URL}/api/users${API_KEY}`);
