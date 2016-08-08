@@ -3,9 +3,8 @@ import { Link } from 'react-router';
 
 export default class Home extends Component{
   render(){
-    const imgUrl = '../image/orig_73582.jpg';
     var divStyle = {
-      background: 'url(' + imgUrl + ')',
+      background: 'linear-gradient(180deg, #F0F8FF, #E6E6FA)',
       backgroundSize:'100% 100%',
       height:'100vh'
     };
@@ -13,12 +12,22 @@ export default class Home extends Component{
     return (
       <div style={divStyle}>
         <div className="text-xs-center">
-          <h1>GDP Intern Database Project!</h1>
+          <h1>Welcome to Radit-SSR Website!</h1>
+          <br/> <br/> <br/>
+          <h2>Example of React-Redux Server-Side Rendering with ExpressJS</h2>
           <Link className = "btn btn-primary btn-sm" to="users/">See Users</Link>
           <Link className = "btn btn-primary btn-sm" to="photos/">See Photos</Link>
           <br />
           <Link className = "btn btn-info btn-sm" to="about/">About</Link>
         </div>
+
+        <footer className="text-xs-center footer">
+            <div className="text-info">
+                Alfonsus Raditya Arsadjaja <br />
+                GDP Intern Summer 2016 <br />
+                Copyright (c) 2016 <br />
+            </div>
+        </footer>
       </div>
     );
   }

@@ -13,7 +13,6 @@ import promise from 'redux-promise';
 import bodyParser from 'body-parser';
 import { CONFIG_MYSQL } from '../config_server';
 
-
 const app = new Express();
 const router = Express.Router();
 const port = 3000;
@@ -74,9 +73,9 @@ router.route('/users/:id')
 /* Setting Databases */
 var connection = mysql.createConnection(CONFIG_MYSQL);
 
+
+
 app.use('/', handleRender);
-
-
 function handleRender(req, res) {
 
   const createStoreWithMiddleware = applyMiddleware(

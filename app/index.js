@@ -12,9 +12,15 @@ const createStoreWithMiddleware = applyMiddleware(
   promise
 )(createStore);
 
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <Router history={history} routes={routes}  />
+  </Provider>, document.querySelector('.container'));
+/*
 match({ history, routes }, (error, redirectLocation, renderProps) => {
   ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
       <Router {...renderProps} />
     </Provider>, document.querySelector('.container'))
 });
+*/
