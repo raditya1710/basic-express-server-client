@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import Helmet from 'react-helmet';
 
 export default class Home extends Component{
   render(){
@@ -11,6 +12,7 @@ export default class Home extends Component{
 
     return (
       <div style={divStyle}>
+        <Helmet title="Home" />
         <div className="text-xs-center">
           <h1>Welcome to Radit-SSR Website!</h1>
           <br/> <br/> <br/>

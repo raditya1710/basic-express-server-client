@@ -2,6 +2,7 @@ import React, { Component, PropTypes} from 'react';
 import { Link } from 'react-router';
 import { fetchUserWithId, deleteUser} from '../actions/index';
 import { connect } from 'react-redux';
+
 class UsersDetail extends Component{
   static contextTypes = {
     router: PropTypes.object
@@ -36,7 +37,8 @@ class UsersDetail extends Component{
     }
 
     return(
-      <div> <h2> <span className="text-info" style={{margin:'5px'}}> User Detail: </span> <span className="text-primary"> <strong> {user.firstName} {user.lastName} </strong></span> </h2>
+      <div>
+        <h2> <span className="text-info" style={{margin:'5px'}}> User Detail: </span> <span className="text-primary"> <strong> {user.firstName} {user.lastName} </strong></span> </h2>
         {this.displayDetail("Username    :", user.userName)}
         {this.displayDetail("E-mail      :", user.email)}
         {this.displayDetail("Address     :", user.address)}

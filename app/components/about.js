@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-
+import Helmet from 'react-helmet';
 
 export default class About extends Component{
   render(){
@@ -13,6 +13,7 @@ export default class About extends Component{
 
     return(
       <div style={divStyle}>
+        <Helmet title="About"/>
         <div className="text-xs-left" style={{margin:'5px'}}>
           <h4>This is the research project about React and Redux with Server Side Rendering</h4>
           <strong>References:</strong>

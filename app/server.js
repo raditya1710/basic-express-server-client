@@ -11,6 +11,7 @@ import routes from './routes';
 import reducers from './reducers';
 import promise from 'redux-promise';
 import bodyParser from 'body-parser';
+import Helmet from 'react-helmet';
 import { CONFIG_MYSQL } from '../config_server';
 
 const app = new Express();
@@ -96,17 +97,19 @@ function handleRender(req, res) {
         <Provider store={store}>
           <RouterContext {...renderProps} />
         </Provider>);
+      const head = Helmet.rewind();
 
-      res.status(200).send('<!doctype html>\n' + renderFullPage(html));
+      res.status(200).send('<!doctype html>\n' + renderFullPage(head, html));
     } else {
       res.status(404).send('Not found');
     }
   })
 }
-function renderFullPage(html) {
+function renderFullPage(head, html) {
   return `
     <html>
       <head>
+        ${head.title.toString()}
         <link rel="stylesheet" href="/../style/style.css">
         <link rel="stylesheet" href="/../style/bootstrap.css">
         <script src="https://maps.googleapis.com/maps/api/js"></script>

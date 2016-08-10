@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../actions/index';
+import Helmet from 'react-helmet';
 
 class UsersIndex extends Component{
   componentWillMount(){
@@ -23,6 +24,7 @@ class UsersIndex extends Component{
   render(){
     return (
         <div>
+          <Helmet title="Users" />
           <div className = "text-xs-right">
             <Link className="btn btn-primary btn-sm" to="/">Back to Home</Link><br />
             <Link className="btn btn-primary btn-lg" to="/users/new">Create New User</Link>
